@@ -34,6 +34,8 @@
       border-radius: 12px;
       background: #fdc3cf;
       color: white;
+      display: block;     /* FIX: keep buttons vertical */
+      width: 100%;        /* Optional: make them all same width */
     }
     button:hover { background: #fc94a9; }
     button.selected { background: #fc94a9 !important; }
@@ -88,7 +90,7 @@
     ];
 
     /* -----------------------
-       MULHOE RESULT TYPES
+       MULHOE RESULTS
     ------------------------*/
     const mulhoe = [
       {name:"You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
@@ -114,7 +116,7 @@ Warm, earthy, comforting, a grounding friend.`}
     ];
 
     /* -----------------------
-       BEAUTIFUL VIBE SCORING
+       VIBE SCORING
     ------------------------*/
     const vibeScore = {
       hanchi: 0,
@@ -162,7 +164,6 @@ Warm, earthy, comforting, a grounding friend.`}
       q.o.forEach((opt,i)=>{
         const b=document.createElement("button");
         b.innerText = String.fromCharCode(65 + i) + ") " + opt;
-        b.style.display="block";
         b.onclick=()=>selectAnswer(i);
         answersDiv.appendChild(b);
       });
@@ -171,16 +172,15 @@ Warm, earthy, comforting, a grounding friend.`}
     function selectAnswer(choice){
       const buttons = document.querySelectorAll("#answers button");
 
-      // SPECIAL CASE: Top 3 songs (Q8)
+      // Special case: Top 3 songs question
       if(index === 7){
         if(!selectedTop3.includes(choice)){
           selectedTop3.push(choice);
           buttons[choice].classList.add("selected");
         }
-
         if(selectedTop3.length < 3) return;
 
-        selectedTop3.forEach(c => {
+        selectedTop3.forEach(c=>{
           const vibeName = answerMap[index][c];
           score[vibeScore[vibeName]]++;
         });
@@ -190,20 +190,19 @@ Warm, earthy, comforting, a grounding friend.`}
         return;
       }
 
-      // NORMAL QUESTIONS
-      buttons.forEach(b => b.classList.remove("selected"));
+      // Normal questions
+      buttons.forEach(b=>b.classList.remove("selected"));
       buttons[choice].classList.add("selected");
 
       const vibeName = answerMap[index][choice];
       score[vibeScore[vibeName]]++;
-
       nextQuestion();
     }
 
     function nextQuestion(){
       index++;
-      if(index < quiz.length){ loadQuestion(); }
-      else{ showResult(); }
+      if(index < quiz.length) loadQuestion();
+      else showResult();
     }
 
     function showResult(){
