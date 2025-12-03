@@ -6,10 +6,10 @@
   <title>Which Mulhoe Variation Are You?</title>
 
   <!-- Twitter card preview -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Which Mulhoe Are You? Jin Birthday Quiz" />
-  <meta name="twitter:description" content="For Seokjin's birthday, a mulhoe-themed quiz. Enjoy!" />
-  <meta name="twitter:image" content="https://miffyjinie.github.io/mulhoequiz/IMG_1729.jpg?v=6" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Which Mulhoe Are You? Jin Birthday Quiz">
+  <meta name="twitter:description" content="For Seokjin's birthday, a mulhoe-themed quiz. Enjoy!">
+  <meta name="twitter:image" content="https://miffyjinie.github.io/mulhoequiz/IMG_1729.jpg?v=7">
 
   <style>
     body {
@@ -49,14 +49,14 @@
 
 <body>
 
-  <!-- INTRO BOX FIXED -->
+  <!-- INTRO BOX -->
   <div class="quiz-box" id="intro">
     <h2 style="text-align:center;">Welcome to the "Which Mulhoe Are You?" Quiz!</h2>
     <img src="miffy.jpeg" alt="Miffy" style="width:140px; display:block; margin:10px auto 5px auto;">
     <p style="text-align:center; font-size:12px; color:#888; margin-bottom:20px;">Miffy © Dick Bruna / Mercis bv</p>
     <p style="text-align:center;">A special quiz to celebrate Seokjin's birthday with his favourite food</p>
     <button onclick="startQuiz()" style="display:block; margin:15px auto;">Start Quiz</button>
-    </div>
+  </div>
 
   <div class="quiz-box" id="quiz" style="display:none;">
     <h2 id="question">Question goes here</h2>
@@ -86,36 +86,31 @@
     ];
 
     const mulhoe = [
-{name:" You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
+      {name:"You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
 You are bright and zingy just like hanchi mulhoe. Energetic, fun, and impossible to ignore.`},
 
-
-{name:"You're Jari Mulhoe!", img:"jari.jpg", desc:`Jari Mulhoe (Damselfish)
+      {name:"You're Jari Mulhoe!", img:"jari.jpg", desc:`Jari Mulhoe (Damselfish)
 You are soft on the outside but strong inside. Just like jari mulhoe, you are gentle, steady, and powerful.`},
 
+      {name:"You're Galchi Mulhoe!", img:"galchi.jpg", desc:`Galchi Mulhoe (Beltfish)
+Bold, sharp, and elegant like galchi mulhoe. You have a strong presence without even trying.`},
 
-{name:"You're Galchi Mulhoe!", img:"galchi.jpg", desc:`Galchi Mulhoe (Beltfish)
-You are bold, sharp, and elegant like galchi mulhoe. You have a strong presence without even trying.`},
+      {name:"You're Okdom Mulhoe!", img:"okdom.jpg", desc:`Okdom Mulhoe (Tilefish)
+Rare, classy, and quietly luxurious. You naturally stand out without effort.`},
 
+      {name:"You're Squid Mulhoe!", img:"squid.jpg", desc:`Squid Mulhoe
+Chaotic, funny, and unexpectedly addictive. You bring fun and happiness everywhere you go.`},
 
-{name:"You're Okdom Mulhoe!", img:"okdom.jpg", desc:`Okdom Mulhoe (Tilefish)
-You are rare and classy. Just like Okdom Mulhoe you naturally stand out without effort.`},
+      {name:"You're Abalone Mulhoe!", img:"abalone.jpg", desc:`Abalone Mulhoe
+Smooth, soothing, and valuable. You radiate calm, classy energy.`},
 
-
-{name:"You're Squid Mulhoe!", img:"squid.jpg", desc:`Squid Mulhoe
-You are chaotic and unexpectedly addictive. Like squid mulhoe, you bring fun and hapiness everywhere you go.`},
-
-
-{name:"You're Abalone Mulhoe!", img:"abalone.jpg", desc:`Abalone Mulhoe
-You are smooth,soothing, and really valuable. Like abalone mulhoe radite calmess and classiness.`},
-
-
-{name:"You're Jeju Doenjang Mulhoe", img:"jeju.jpg", desc:`Jeju Doenjang Mulhoe
-You are warm, earthy, and comforting. Just like Jeju’s doenjang mulhoe, you are grounding and healing to be around.`}
-];
+      {name:"You're Jeju Doenjang Mulhoe!", img:"jeju.jpg", desc:`Jeju Doenjang Mulhoe
+Warm, earthy, comforting. You are grounding and healing to be around.`}
+    ];
 
     let index = 0;
     let score = new Array(7).fill(0);
+    let selectedTop3 = [];
 
     function startQuiz(){
       document.getElementById('intro').style.display='none';
@@ -128,69 +123,56 @@ You are warm, earthy, and comforting. Just like Jeju’s doenjang mulhoe, you ar
       document.getElementById("question").innerText = q.q;
       const answersDiv = document.getElementById("answers");
       answersDiv.innerHTML = "";
+      selectedTop3 = [];
+
       q.o.forEach((opt,i)=>{
-        const b=document.createElement("button");
+        const b = document.createElement("button");
         b.innerText = String.fromCharCode(65 + i) + ") " + opt;
-        b.style.display="block";
-        b.onclick=()=>selectAnswer(i);
+        b.onclick = () => selectAnswer(i);
         answersDiv.appendChild(b);
       });
     }
 
-    let selectedTop3 = [];
-    
     function selectAnswer(choice){
-
       const buttons = document.querySelectorAll("#answers button");
-// Question index 7 (the Top 3 songs one)
-if(index === 7){
 
-  // prevent duplicates
-  if(!selectedTop3.includes(choice)){
-      selectedTop3.push(choice);
+      // TOP 3 QUESTION
+      if(index === 7){
+        if(!selectedTop3.includes(choice)){
+          selectedTop3.push(choice);
+          buttons[choice].classList.add("selected");
+        }
+        if(selectedTop3.length < 3){ return; }
+
+        selectedTop3.forEach(c => score[c % 7]++);
+        nextQuestion();
+        return;
+      }
+
+      // NORMAL QUESTIONS
+      buttons.forEach(b => b.classList.remove("selected"));
       buttons[choice].classList.add("selected");
+      score[choice % 7]++;
+      nextQuestion();
     }
-
-  // wait until 3 unique selections
-  if(selectedTop3.length < 3){
-    return; 
-  }
-
-  // once 3 are chosen — score them
-  selectedTop3.forEach(c => score[c % 7]++);
-
-  // reset for safety
-  selectedTop3 = [];
-
-  nextQuestion();
-  return;
-}
-
-// normal questions
-buttons.forEach(b => b.classList.remove("selected"));
-  buttons[choice].classList.add("selected");
-
-  score[choice % 7]++;
-  nextQuestion();
-}
 
     function nextQuestion(){
       index++;
-      if(index < quiz.length){ loadQuestion(); }
-      else{ showResult(); }
+      if(index < quiz.length) loadQuestion();
+      else showResult();
     }
 
     function showResult(){
-let max = Math.max(...score);
-let idx = score.indexOf(max);
-let r = mulhoe[idx];
-document.getElementById("question").innerText = r.name;
-document.getElementById("answers").innerHTML = "";
-document.getElementById("result").innerHTML = `
-<h3 style="white-space:pre-line;">${r.desc}</h3>
-<img src="${r.img}">`;
-}
-  
+      const idx = score.indexOf(Math.max(...score));
+      const r = mulhoe[idx];
+
+      document.getElementById("question").innerText = r.name;
+      document.getElementById("answers").innerHTML = "";
+      document.getElementById("result").innerHTML = `
+        <h3 style="white-space:pre-line;">${r.desc}</h3>
+        <img src="${r.img}">
+      `;
+    }
 
     loadQuestion();
   </script>
