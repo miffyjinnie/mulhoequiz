@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Which Mulhoe Variation Are You?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #FFE6EE; /* soft light pink */
+      max-width: 750px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .quiz-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      background: #fdc3cf
+      ; /* readable soft pink */
+      color: white;
+    }
+    button:hover { background: #fc94a9; }
+    #result img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+    button.selected {
+  background: #fc94a9 !important; /* same as hover color */
+}
+  </style>
+</head>
+<body>
+
+  <!-- INTRO BOX FIXED -->
+  <div class="quiz-box" id="intro">
+    <h2 style="text-align:center;">Welcome to the "Which Mulhoe Are You?" Quiz!</h2>
+    <img src="miffy.jpeg" alt="Miffy" style="width:140px; display:block; margin:10px auto 5px auto;">
+    <p style="text-align:center; font-size:12px; color:#888; margin-bottom:20px;">Miffy © Dick Bruna / Mercis bv</p>
+    <p style="text-align:center;">A special quiz to celebrate Seokjin's birthday with his favourite food</p>
+    <button onclick="startQuiz()" style="display:block; margin:15px auto;">Start Quiz</button>
+    </div>
+
+  <div class="quiz-box" id="quiz" style="display:none;">
+    <h2 id="question">Question goes here</h2>
+    <div id="answers"></div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const quiz = [
+      { q: "What's your favourite pre-solo debut Seokjin solo song?", o:["Awake","Epiphany","Moon","Super Tuna","Abyss","Tonight"]},
+      { q: "Which side of history are you on?", o:["WolfJin 🐺","HamsterJin 🐹", "MiffyJinnie 🐰"]},
+      { q: "Which one is your favorite random Seokjin side quest?", o:["Him being the olympic torchbearer","His appearance in Half-Star Hotel"," His appearance in I LOVE Everyone’s Zoo","Always being the MC at someones wedding"," His appearance in Kian’s Bizarre B&B"]},
+      { q: "What’s your favorite quote by Seokjin?", o:[
+        "I hope none of you get stung by a huge bee.",
+        "If we all gather our embarrassment together, it’ll become confidence.",
+        "What if he flings it? Then he flings it.",
+        "If I have no choice but to live like this, I might as well adapt. The moment I accept what's happening and adapt to it, the happier I’ll be.",
+        "What I wish to say is: just because others are having difficulties, it doesn't mean that yours become any less difficult. So whenever you're having a hard time, tell others that you're struggling ask them to understand and comfort you. Please be sure to do that.",
+        "If any of you feels lost in the face of uncertainty, or the pressure of starting anew, don’t rush. Take a deep breath. You may find that any moment can be turned into opportunity. Allow yourself to take it easy one step at a time."
+      ]},
+      { q: "What’s your favorite iconic RunSeokjin episode?", o:["The beginning,first episode of RunSeokjin (Ep 1)","The Tom Cruise episode (Ep 35)","The Last Goodbye Episode (Ep 36)","Birther of all edits Jin Wick (Ep 33)"," The Fencing episode (Ep 27)","The episode with Taeha (Ep 13)"]},
+      { q: "What’s your favorite Seokjin duo within BTS?", o:["Namjin","Yoonjin","2Seok","Jinmin","Taejin","Jinkook"]},
+      { q: "What’s your favorite Seokjin album?", o:["The Astronaut","Happy","Echo"]},
+      { q: "Pick your Top 3 Seokjin album songs", o:["Running Wild","I’ll Be There","Another Level","Falling","Heart on the Window","I Will Come to You","Don’t Say You Love Me","Nothing Without Your Love","Loser","Rope It","With the Clouds","Background","To Me, Today", "The Astronaut"]},
+      { q: "What’s your favorite brand deal that represents Seokjin?", o:["LANEIGE","GUCCI","Seoul","FRED","ALO","Jin Ramen","Dongwon Tuna","IGIN","Lucidol","Dolby Atmos"]},
+      { q: "What’s your favorite hobby that Seokjin has?", o:["Gaming","Fishing","Playing the piano & guitar","Cooking","Playing tennis"]}
+    ];
+
+    const mulhoe = [
+{name:" You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
+You are bright and zingy just like hanchi mulhoe. Energetic, fun, and impossible to ignore.`},
+
+
+{name:"You're Jari Mulhoe!", img:"jari.jpg", desc:`Jari Mulhoe (Damselfish)
+You are soft on the outside but strong inside. Just like jari mulhoe, you are gentle, steady, and powerful.`},
+
+
+{name:"You're Galchi Mulhoe!", img:"galchi.jpg", desc:`Galchi Mulhoe (Beltfish)
+You are bold, sharp, and elegant like galchi mulhoe. You have a strong presence without even trying.`},
+
+
+{name:"You're Okdom Mulhoe!", img:"okdom.jpg", desc:`Okdom Mulhoe (Tilefish)
+You are rare and classy. Just like Okdom Mulhoe you naturally stand out without effort.`},
+
+
+{name:"You're Squid Mulhoe!", img:"squid.jpg", desc:`Squid Mulhoe
+You are chaotic and unexpectedly addictive. Like squid mulhoe, you bring fun and hapiness everywhere you go.`},
+
+
+{name:"You're Abalone Mulhoe!", img:"abalone.jpg", desc:`Abalone Mulhoe
+You are smooth,soothing, and really valuable. Like abalone mulhoe radite calmess and classiness.`},
+
+
+{name:"You're Jeju Doenjang Mulhoe", img:"jeju.jpg", desc:`Jeju Doenjang Mulhoe
+You are warm, earthy, and comforting. Just like Jeju’s doenjang mulhoe, you are grounding and healing to be around.`}
+];
+
+    let index = 0;
+    let score = new Array(7).fill(0);
+
+    function startQuiz(){
+      document.getElementById('intro').style.display='none';
+      document.getElementById('quiz').style.display='block';
+      loadQuestion();
+    }
+
+    function loadQuestion(){
+      const q = quiz[index];
+      document.getElementById("question").innerText = q.q;
+      const answersDiv = document.getElementById("answers");
+      answersDiv.innerHTML = "";
+      q.o.forEach((opt,i)=>{
+        const b=document.createElement("button");
+        b.innerText = String.fromCharCode(65 + i) + ") " + opt;
+        b.style.display="block";
+        b.onclick=()=>selectAnswer(i);
+        answersDiv.appendChild(b);
+      });
+    }
+
+    let selectedTop3 = [];
+    
+    function selectAnswer(choice){
+
+      const buttons = document.querySelectorAll("#answers button");
+// Question index 7 (the Top 3 songs one)
+if(index === 7){
+
+  // prevent duplicates
+  if(!selectedTop3.includes(choice)){
+      selectedTop3.push(choice);
+      buttons[choice].classList.add("selected");
+    }
+
+  // wait until 3 unique selections
+  if(selectedTop3.length < 3){
+    return; 
+  }
+
+  // once 3 are chosen — score them
+  selectedTop3.forEach(c => score[c % 7]++);
+
+  // reset for safety
+  selectedTop3 = [];
+
+  nextQuestion();
+  return;
+}
+
+// normal questions
+buttons.forEach(b => b.classList.remove("selected"));
+  buttons[choice].classList.add("selected");
+
+  score[choice % 7]++;
+  nextQuestion();
+}
+
+    function nextQuestion(){
+      index++;
+      if(index < quiz.length){ loadQuestion(); }
+      else{ showResult(); }
+    }
+
+    function showResult(){
+let max = Math.max(...score);
+let idx = score.indexOf(max);
+let r = mulhoe[idx];
+document.getElementById("question").innerText = r.name;
+document.getElementById("answers").innerHTML = "";
+document.getElementById("result").innerHTML = `
+<h3 style="white-space:pre-line;">${r.desc}</h3>
+<img src="${r.img}">`;
+}
+  
+
+    loadQuestion();
+  </script>
+</body>
+</html>
