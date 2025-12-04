@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Which Mulhoe Variation Are You?</title>
 
-  <!-- Twitter card preview -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Which Mulhoe Are You? Jin Birthday Quiz" />
-  <meta name="twitter:description" content="For Seokjin's birthday, a mulhoe-themed quiz. Enjoy!" />
-  <meta name="twitter:image" content="https://miffyjinie.github.io/mulhoequiz/IMG_1729.jpg?v=6" />
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,10 +48,10 @@
   <!-- INTRO -->
   <div class="quiz-box" id="intro">
     <h2 style="text-align:center;">Welcome to the "Which Mulhoe Are You?" Quiz!</h2>
-    <img src="miffy.jpeg" alt="Miffy" style="width:140px; display:block; margin:10px auto 5px auto;">
-    <p style="text-align:center; font-size:12px; color:#888; margin-bottom:20px;">Miffy © Dick Bruna / Mercis bv</p>
-    <p style="text-align:center;">A special quiz to celebrate Seokjin's birthday with his favourite food</p>
-    <button onclick="startQuiz()" style="margin-top:20px;">Start Quiz</button>
+    <img src="miffy.jpeg" alt="Miffy" style="width:140px; display:block; margin:10px auto;">
+    <p style="text-align:center; font-size:12px; color:#888;">Miffy © Dick Bruna / Mercis bv</p>
+    <p style="text-align:center;">A special quiz to celebrate Seokjin's birthday with his favourite food!</p>
+    <button onclick="startQuiz()">Start Quiz</button>
   </div>
 
   <!-- QUIZ -->
@@ -68,28 +62,7 @@
   </div>
 
 <script>
-/* Q U I Z   D A T A */
-const quiz = [
-  { q: "What's your favourite pre-solo debut Seokjin solo song?", o:["Awake","Epiphany","Moon","Super Tuna","Abyss","Tonight"]},
-  { q: "Which side of history are you on?", o:["WolfJin 🐺","HamsterJin 🐹", "MiffyJinnie 🐰"]},
-  { q: "Which one is your favorite random Seokjin side quest?", o:["Him being the olympic torchbearer","His appearance in Half-Star Hotel","His appearance in I LOVE Everyone’s Zoo","Always being the MC at someones wedding","His appearance in Kian’s Bizarre B&B"]},
-  { q: "What’s your favorite quote by Seokjin?", o:[
-    "I hope none of you get stung by a huge bee.",
-    "If we all gather our embarrassment together, it’ll become confidence.",
-    "What if he flings it? Then he flings it.",
-    "If I have no choice but to live like this, I might as well adapt. The moment I accept what's happening and adapt to it, the happier I’ll be.",
-    "What I wish to say is: just because others are having difficulties, it doesn't mean that yours become any less difficult.",
-    "If any of you feels lost in the face of uncertainty, take a deep breath and go slowly."
-  ]},
-  { q: "What’s your favorite iconic RunSeokjin episode?", o:["The beginning (Ep 1)","The Tom Cruise episode (Ep 35)","The Last Goodbye Episode (Ep 36)","Jin Wick (Ep 33)","The Fencing episode (Ep 27)","The episode with Taeha (Ep 13)"]},
-  { q: "What’s your favorite Seokjin duo within BTS?", o:["Namjin","Yoonjin","2Seok","Jinmin","Taejin","Jinkook"]},
-  { q: "What’s your favorite Seokjin album?", o:["The Astronaut","Happy","Echo"]},
-  { q: "Pick your Top 3 Seokjin album songs", o:["Running Wild","I’ll Be There","Another Level","Falling","Heart on the Window","I Will Come to You","Don’t Say You Love Me","Nothing Without Your Love","Loser","Rope It","With the Clouds","Background","To Me, Today", "The Astronaut"]},
-  { q: "What’s your favorite brand deal that represents Seokjin?", o:["LANEIGE","GUCCI","Seoul","FRED","ALO","Jin Ramen","Dongwon Tuna","IGIN","Lucidol","Dolby Atmos"]},
-  { q: "What’s your favorite hobby that Seokjin has?", o:["Gaming","Fishing","Playing the piano & guitar","Cooking","Playing tennis"]}
-];
-
-/* M U L H O E   R E S U L T S */
+/* M U L H O E  R E S U L T S */
 const mulhoe = [
   {
     name:"You're Hanchi Mulhoe!",
@@ -113,7 +86,7 @@ You are bold, sharp, and elegant like galchi mulhoe. You have a strong presence 
     name:"You're Okdom Mulhoe!",
     img:"okdom.jpg",
     desc:`Okdom Mulhoe (Tilefish)
-You are rare and classy. Just like Okdom Mulhoe you naturally stand out without effort.`
+You are rare and classy. Just like Okdom Mulhoe, you naturally stand out without effort.`
   },
   {
     name:"You're Squid Mulhoe!",
@@ -135,7 +108,86 @@ You are warm, earthy, and comforting. Just like Jeju’s doenjang mulhoe, you ar
   }
 ];
 
-/* L O G I C */
+/* Q U I Z  D A T A */
+const quiz = [
+  { q: "What's your favourite pre-solo debut Seokjin solo song?",
+    o:["Awake","Epiphany","Moon","Super Tuna","Abyss","Tonight"] },
+
+  { q: "Which side of history are you on?",
+    o:["WolfJin 🐺","HamsterJin 🐹","MiffyJinnie 🐰"] },
+
+  { q: "Which one is your favorite random Seokjin side quest?",
+    o:["Him being the olympic torchbearer","His appearance in Half-Star Hotel",
+       "His appearance in I LOVE Everyone’s Zoo","Always being the MC at someones wedding",
+       "His appearance in Kian’s Bizarre B&B"] },
+
+  { q: "What’s your favorite quote by Seokjin?",
+    o:[
+      "I hope none of you get stung by a huge bee.",
+      "If we all gather our embarrassment together, it’ll become confidence.",
+      "What if he flings it? Then he flings it.",
+      "If I have no choice but to live like this…",
+      "What I wish to say is: just because others are having difficulties…",
+      "If any of you feels lost in the face of uncertainty…"
+    ]},
+
+  { q: "What’s your favorite iconic RunSeokjin episode?",
+    o:["The beginning (Ep 1)","The Tom Cruise episode (Ep 35)",
+       "The Last Goodbye Episode (Ep 36)","Jin Wick (Ep 33)",
+       "The Fencing episode (Ep 27)","The episode with Taeha (Ep 13)"] },
+
+  { q: "What’s your favorite Seokjin duo within BTS?",
+    o:["Namjin","Yoonjin","2Seok","Jinmin","Taejin","Jinkook"] },
+
+  { q: "What’s your favorite Seokjin album?",
+    o:["The Astronaut","Happy","Echo"] },
+
+  { q: "Pick your Top 3 Seokjin album songs",
+    o:["Running Wild","I’ll Be There","Another Level","Falling","Heart on the Window",
+       "I Will Come to You","Don’t Say You Love Me","Nothing Without Your Love","Loser",
+       "Rope It","With the Clouds","Background","To Me, Today", "The Astronaut"] },
+
+  { q: "What’s your favorite brand deal that represents Seokjin?",
+    o:["LANEIGE","GUCCI","Seoul Tourism","FRED","ALO","Jin Ramen","Dongwon Tuna",
+       "IGIN","Lucidol","Dolby Atmos"] },
+
+  { q: "What’s your favorite hobby that Seokjin has?",
+    o:["Gaming","Fishing","Playing the piano & guitar","Cooking","Playing tennis"] }
+];
+
+/* A N S W E R  →  M U L H O E  M A P P I N G */
+const mapping = [
+  // Q1
+  [2,1,6,4,5,3],
+
+  // Q2
+  [2,6,1],
+
+  // Q3
+  [3,2,6,0,4],
+
+  // Q4
+  [0,4,6,5,1,3],
+
+  // Q5
+  [0,3,6,2,5,4],
+
+  // Q6
+  [1,6,4,3,2,0],
+
+  // Q7
+  [6,0,3],
+
+  // Q8 (14 answers)
+  [0,4,2,5,6,3,6,0,0,6,2,4,6,1],
+
+  // Q9
+  [3,2,4,3,5,0,4,6,3,1],
+
+  // Q10
+  [4,0,6,1,3]
+];
+
 let index = 0;
 let score = new Array(mulhoe.length).fill(0);
 let selectedTop3 = [];
@@ -170,13 +222,12 @@ function selectAnswer(choice){
       selectedTop3.push(choice);
       buttons[choice].classList.add("selected");
     }
-
     if(selectedTop3.length < 3) return;
 
-    // give each selected answer a random mulhoe point
-    selectedTop3.forEach(()=>{
-      let r = Math.floor(Math.random()*mulhoe.length);
-      score[r]++;
+    // score each selected answer
+    selectedTop3.forEach(c=>{
+      const mul = mapping[index][c];
+      score[mul]++;
     });
 
     selectedTop3 = [];
@@ -184,9 +235,9 @@ function selectAnswer(choice){
     return;
   }
 
-  // Normal question scoring: random mulhoe boost
-  let r = Math.floor(Math.random()*mulhoe.length);
-  score[r]++;
+  // Normal questions
+  const mul = mapping[index][choice];
+  score[mul]++;
 
   nextQuestion();
 }
