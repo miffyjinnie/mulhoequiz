@@ -19,10 +19,12 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+
+    /* UPDATED BUTTON CSS (fix text wrapping) */
     button {
       margin-top: 10px;
-      padding: 10px 15px;
-      font-size: 16px;
+      padding: 14px 18px;       /* more breathing room */
+      font-size: 15px;
       cursor: pointer;
       border: none;
       border-radius: 12px;
@@ -30,7 +32,11 @@
       color: white;
       display: block;
       width: 100%;
+      white-space: normal;      /* WRAPS LONG QUOTES */
+      line-height: 1.4;         /* improves readability */
+      text-align: center;       /* centered text */
     }
+
     button:hover { background: #fc94a9; }
     button.selected {
       background: #fc94a9 !important;
@@ -122,16 +128,15 @@ const quiz = [
        "His appearance in Kian’s Bizarre B&B"] },
 
   { q: "What’s your favorite quote by Seokjin?",
-  o:[
-    "I hope none of you get stung by a huge bee.",
-    "If we all gather our embarrassment together, it’ll become confidence.",
-    "What if he flings it? Then he flings it.",
-    "If I have no choice but to live like this, I might as well adapt. The moment I accept what's happening and adapt to it, the happier I’ll be.",
-    "What I wish to say is: just because others are having difficulties, it doesn't mean that yours become any less difficult. So whenever you're having a hard time, tell others that you're struggling and ask them to understand and comfort you. Please be sure to do that.",
-    "If any of you feels lost in the face of uncertainty, or the pressure of starting anew, don’t rush. Take a deep breath. You may find that any moment can be turned into opportunity. Allow yourself to take it easy one step at a time."
-  ]
-},
-
+    o:[
+      "I hope none of you get stung by a huge bee.",
+      "If we all gather our embarrassment together, it’ll become confidence.",
+      "What if he flings it? Then he flings it.",
+      "If I have no choice but to live like this, I might as well adapt. The moment I accept what's happening and adapt to it, the happier I’ll be.",
+      "What I wish to say is: just because others are having difficulties, it doesn't mean that yours become any less difficult. So whenever you're having a hard time, tell others that you're struggling and ask them to understand and comfort you. Please be sure to do that.",
+      "If any of you feels lost in the face of uncertainty, or the pressure of starting anew, don’t rush. Take a deep breath. You may find that any moment can be turned into opportunity. Allow yourself to take it easy one step at a time."
+    ]
+  },
 
   { q: "What’s your favorite iconic RunSeokjin episode?",
     o:["The beginning (Ep 1)","The Tom Cruise episode (Ep 35)",
@@ -159,34 +164,15 @@ const quiz = [
 
 /* A N S W E R  →  M U L H O E  M A P P I N G */
 const mapping = [
-  // Q1
   [2,1,6,4,5,3],
-
-  // Q2
   [2,6,1],
-
-  // Q3
   [3,2,6,0,4],
-
-  // Q4
   [0,4,6,5,1,3],
-
-  // Q5
   [0,3,6,2,5,4],
-
-  // Q6
   [1,6,4,3,2,0],
-
-  // Q7
   [6,0,3],
-
-  // Q8 (14 answers)
   [0,4,2,5,6,3,6,0,0,6,2,4,6,1],
-
-  // Q9
   [3,2,4,3,5,0,4,6,3,1],
-
-  // Q10
   [4,0,6,1,3]
 ];
 
@@ -218,15 +204,13 @@ function loadQuestion(){
 function selectAnswer(choice){
   const buttons = document.querySelectorAll("#answers button");
 
-  // Special: Top 3 question
-  if(index === 7){
+  if(index === 7){ // Top 3 songs
     if(!selectedTop3.includes(choice)){
       selectedTop3.push(choice);
       buttons[choice].classList.add("selected");
     }
     if(selectedTop3.length < 3) return;
 
-    // score each selected answer
     selectedTop3.forEach(c=>{
       const mul = mapping[index][c];
       score[mul]++;
@@ -237,10 +221,8 @@ function selectAnswer(choice){
     return;
   }
 
-  // Normal questions
   const mul = mapping[index][choice];
   score[mul]++;
-
   nextQuestion();
 }
 
@@ -266,4 +248,5 @@ function showResult(){
 
 </body>
 </html>
+
 
