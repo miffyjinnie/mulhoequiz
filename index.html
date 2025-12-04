@@ -9,7 +9,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Which Mulhoe Are You? Jin Birthday Quiz" />
   <meta name="twitter:description" content="For Seokjin's birthday, a mulhoe-themed quiz. Enjoy!" />
-  <meta name="twitter:image" content="https://miffyjinnie.github.io/mulhoequiz/IMG_1729.jpg?v=10" />
+  <meta name="twitter:image" content="https://miffyjinie.github.io/mulhoequiz/IMG_1729.jpg?v=6" />
 
   <style>
     body {
@@ -34,36 +34,30 @@
       border-radius: 12px;
       background: #fdc3cf;
       color: white;
-      display: block;     /* FIX: keep buttons vertical */
-      width: 100%;        /* Optional: make them all same width */
     }
     button:hover { background: #fc94a9; }
-    button.selected { background: #fc94a9 !important; }
     #result img {
       width: 100%;
       border-radius: 10px;
       margin-top: 15px;
     }
-    #answers button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
+    button.selected {
+      background: #fc94a9 !important;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- INTRO -->
+  <!-- INTRO BOX FIXED -->
   <div class="quiz-box" id="intro">
     <h2 style="text-align:center;">Welcome to the "Which Mulhoe Are You?" Quiz!</h2>
     <img src="miffy.jpeg" alt="Miffy" style="width:140px; display:block; margin:10px auto 5px auto;">
     <p style="text-align:center; font-size:12px; color:#888; margin-bottom:20px;">Miffy © Dick Bruna / Mercis bv</p>
     <p style="text-align:center;">A special quiz to celebrate Seokjin's birthday with his favourite food</p>
     <button onclick="startQuiz()" style="display:block; margin:15px auto;">Start Quiz</button>
-  </div>
+    </div>
 
-  <!-- QUIZ -->
   <div class="quiz-box" id="quiz" style="display:none;">
     <h2 id="question">Question goes here</h2>
     <div id="answers"></div>
@@ -71,87 +65,57 @@
   </div>
 
   <script>
-    /* -----------------------
-       QUIZ QUESTIONS
-    ------------------------*/
     const quiz = [
       { q: "What's your favourite pre-solo debut Seokjin solo song?", o:["Awake","Epiphany","Moon","Super Tuna","Abyss","Tonight"]},
-      { q: "Which side of history are you on?", o:["WolfJin 🐺","HamsterJin 🐹","MiffyJinnie 🐰"]},
-      { q: "Which one is your favorite random Seokjin side quest?", o:["Him being the olympic torchbearer","His appearance in Half-Star Hotel","His appearance in I LOVE Everyone’s Zoo","Always being the MC at someones wedding","His appearance in Kian’s Bizarre B&B"]},
+      { q: "Which side of history are you on?", o:["WolfJin 🐺","HamsterJin 🐹", "MiffyJinnie 🐰"]},
+      { q: "Which one is your favorite random Seokjin side quest?", o:["Him being the olympic torchbearer","His appearance in Half-Star Hotel"," His appearance in I LOVE Everyone’s Zoo","Always being the MC at someones wedding"," His appearance in Kian’s Bizarre B&B"]},
       { q: "What’s your favorite quote by Seokjin?", o:[
         "I hope none of you get stung by a huge bee.",
         "If we all gather our embarrassment together, it’ll become confidence.",
         "What if he flings it? Then he flings it.",
-        "If I have no choice but to live like this, I might as well adapt.",
-        "Just because others struggle doesn't make your struggle any less real.",
-        "If you feel lost or pressured, take a breath and allow yourself to move slowly."
+        "If I have no choice but to live like this, I might as well adapt. The moment I accept what's happening and adapt to it, the happier I’ll be.",
+        "What I wish to say is: just because others are having difficulties, it doesn't mean that yours become any less difficult. So whenever you're having a hard time, tell others that you're struggling ask them to understand and comfort you. Please be sure to do that.",
+        "If any of you feels lost in the face of uncertainty, or the pressure of starting anew, don’t rush. Take a deep breath. You may find that any moment can be turned into opportunity. Allow yourself to take it easy one step at a time."
       ]},
-      { q: "What’s your favorite iconic RunSeokjin episode?", o:["The beginning / first episode (Ep 1)","Tom Cruise episode (Ep 35)","Last Goodbye Episode (Ep 36)","Jin Wick (Ep 33)","Fencing episode (Ep 27)","The episode with Taeha (Ep 13)"]},
+      { q: "What’s your favorite iconic RunSeokjin episode?", o:["The beginning,first episode of RunSeokjin (Ep 1)","The Tom Cruise episode (Ep 35)","The Last Goodbye Episode (Ep 36)","Birther of all edits Jin Wick (Ep 33)"," The Fencing episode (Ep 27)","The episode with Taeha (Ep 13)"]},
       { q: "What’s your favorite Seokjin duo within BTS?", o:["Namjin","Yoonjin","2Seok","Jinmin","Taejin","Jinkook"]},
       { q: "What’s your favorite Seokjin album?", o:["The Astronaut","Happy","Echo"]},
-      { q: "Pick your Top 3 Seokjin album songs", o:["Running Wild","I’ll Be There","Another Level","Falling","Heart on the Window","I Will Come to You","Don’t Say You Love Me","Nothing Without Your Love","Loser","Rope It","With the Clouds","Background","To Me, Today","The Astronaut"]},
+      { q: "Pick your Top 3 Seokjin album songs", o:["Running Wild","I’ll Be There","Another Level","Falling","Heart on the Window","I Will Come to You","Don’t Say You Love Me","Nothing Without Your Love","Loser","Rope It","With the Clouds","Background","To Me, Today", "The Astronaut"]},
       { q: "What’s your favorite brand deal that represents Seokjin?", o:["LANEIGE","GUCCI","Seoul","FRED","ALO","Jin Ramen","Dongwon Tuna","IGIN","Lucidol","Dolby Atmos"]},
       { q: "What’s your favorite hobby that Seokjin has?", o:["Gaming","Fishing","Playing the piano & guitar","Cooking","Playing tennis"]}
     ];
 
-    /* -----------------------
-       MULHOE RESULTS
-    ------------------------*/
     const mulhoe = [
-      {name:"You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
-You are bright and zingy — fun, energetic, impossible to ignore.`},
+{name:" You're Hanchi Mulhoe!", img:"hanchi.jpg", desc:`Hanchi Mulhoe (Cuttlefish)
+You are bright and zingy just like hanchi mulhoe. Energetic, fun, and impossible to ignore.`},
 
-      {name:"You're Jari Mulhoe!", img:"jari.jpg", desc:`Jari Mulhoe (Damselfish)
-Soft, gentle, pastel-core energy. Quiet but powerful.`},
 
-      {name:"You're Galchi Mulhoe!", img:"galchi.jpg", desc:`Galchi Mulhoe (Beltfish)
-Sharp, confident, slay queen energy.`},
+{name:"You're Jari Mulhoe!", img:"jari.jpg", desc:`Jari Mulhoe (Damselfish)
+You are soft on the outside but strong inside. Just like jari mulhoe, you are gentle, steady, and powerful.`},
 
-      {name:"You're Okdom Mulhoe!", img:"okdom.jpg", desc:`Okdom Mulhoe (Tilefish)
-Classy, rare, quiet luxury aesthetic.`},
 
-      {name:"You're Squid Mulhoe!", img:"squid.jpg", desc:`Squid Mulhoe
-Chaotic good, hilarious, serotonin provider.`},
+{name:"You're Galchi Mulhoe!", img:"galchi.jpg", desc:`Galchi Mulhoe (Beltfish)
+You are bold, sharp, and elegant like galchi mulhoe. You have a strong presence without even trying.`},
 
-      {name:"You're Abalone Mulhoe!", img:"abalone.jpg", desc:`Abalone Mulhoe
-Soft luxury, soothing, calm ocean glow.`},
 
-      {name:"You're Jeju Doenjang Mulhoe!", img:"jeju.jpg", desc:`Jeju Doenjang Mulhoe
-Warm, earthy, comforting, a grounding friend.`}
-    ];
+{name:"You're Okdom Mulhoe!", img:"okdom.jpg", desc:`Okdom Mulhoe (Tilefish)
+You are rare and classy. Just like Okdom Mulhoe you naturally stand out without effort.`},
 
-    /* -----------------------
-       VIBE SCORING
-    ------------------------*/
-    const vibeScore = {
-      hanchi: 0,
-      jari: 1,
-      galchi: 2,
-      okdom: 3,
-      squid: 4,
-      abalone: 5,
-      jeju: 6
-    };
 
-    const answerMap = {
-      0: ["okdom","abalone","jari","squid","jeju","hanchi"],
-      1: ["galchi","jari","hanchi"],
-      2: ["galchi","squid","jari","okdom","hanchi"],
-      3: ["squid","hanchi","squid","jeju","abalone","jari"],
-      4: ["hanchi","galchi","jeju","galchi","okdom","squid"],
-      5: ["okdom","jari","hanchi","abalone","squid","galchi"],
-      6: ["jari","hanchi","jeju"],
-      7: ["okdom","abalone","jari","squid","jeju","hanchi","jari","okdom","abalone","squid","jari","okdom","abalone"],
-      8: ["jari","okdom","jeju","okdom","abalone","hanchi","squid","galchi","galchi","okdom"],
-      9: ["squid","jeju","jari","abalone","hanchi"]
-    };
+{name:"You're Squid Mulhoe!", img:"squid.jpg", desc:`Squid Mulhoe
+You are chaotic and unexpectedly addictive. Like squid mulhoe, you bring fun and hapiness everywhere you go.`},
 
-    /* -----------------------
-       QUIZ LOGIC
-    ------------------------*/
+
+{name:"You're Abalone Mulhoe!", img:"abalone.jpg", desc:`Abalone Mulhoe
+You are smooth,soothing, and really valuable. Like abalone mulhoe radite calmess and classiness.`},
+
+
+{name:"You're Jeju Doenjang Mulhoe", img:"jeju.jpg", desc:`Jeju Doenjang Mulhoe
+You are warm, earthy, and comforting. Just like Jeju’s doenjang mulhoe, you are grounding and healing to be around.`}
+];
+
     let index = 0;
     let score = new Array(7).fill(0);
-    let selectedTop3 = [];
 
     function startQuiz(){
       document.getElementById('intro').style.display='none';
@@ -162,69 +126,73 @@ Warm, earthy, comforting, a grounding friend.`}
     function loadQuestion(){
       const q = quiz[index];
       document.getElementById("question").innerText = q.q;
-
       const answersDiv = document.getElementById("answers");
       answersDiv.innerHTML = "";
-
       q.o.forEach((opt,i)=>{
         const b=document.createElement("button");
         b.innerText = String.fromCharCode(65 + i) + ") " + opt;
+        b.style.display="block";
         b.onclick=()=>selectAnswer(i);
         answersDiv.appendChild(b);
       });
     }
 
+    let selectedTop3 = [];
+    
     function selectAnswer(choice){
+
       const buttons = document.querySelectorAll("#answers button");
+// Question index 7 (the Top 3 songs one)
+if(index === 7){
 
-      // Special case: Top 3 songs question
-      if(index === 7){
-        if(!selectedTop3.includes(choice)){
-          selectedTop3.push(choice);
-          buttons[choice].classList.add("selected");
-        }
-        if(selectedTop3.length < 3) return;
-
-        selectedTop3.forEach(c=>{
-          const vibeName = answerMap[index][c];
-          score[vibeScore[vibeName]]++;
-        });
-
-        selectedTop3 = [];
-        nextQuestion();
-        return;
-      }
-
-      // Normal questions
-      buttons.forEach(b=>b.classList.remove("selected"));
+  // prevent duplicates
+  if(!selectedTop3.includes(choice)){
+      selectedTop3.push(choice);
       buttons[choice].classList.add("selected");
-
-      const vibeName = answerMap[index][choice];
-      score[vibeScore[vibeName]]++;
-      nextQuestion();
     }
+
+  // wait until 3 unique selections
+  if(selectedTop3.length < 3){
+    return; 
+  }
+
+  // once 3 are chosen — score them
+  selectedTop3.forEach(c => score[c % 7]++);
+
+  // reset for safety
+  selectedTop3 = [];
+
+  nextQuestion();
+  return;
+}
+
+// normal questions
+buttons.forEach(b => b.classList.remove("selected"));
+  buttons[choice].classList.add("selected");
+
+  score[choice % 7]++;
+  nextQuestion();
+}
 
     function nextQuestion(){
       index++;
-      if(index < quiz.length) loadQuestion();
-      else showResult();
+      if(index < quiz.length){ loadQuestion(); }
+      else{ showResult(); }
     }
 
     function showResult(){
-      let max = Math.max(...score);
-      let idx = score.indexOf(max);
-      let r = mulhoe[idx];
-
-      document.getElementById("question").innerText = r.name;
-      document.getElementById("answers").innerHTML = "";
-      document.getElementById("result").innerHTML = `
-        <h3 style="white-space:pre-line;">${r.desc}</h3>
-        <img src="${r.img}">
-      `;
-    }
+let max = Math.max(...score);
+let idx = score.indexOf(max);
+let r = mulhoe[idx];
+document.getElementById("question").innerText = r.name;
+document.getElementById("answers").innerHTML = "";
+document.getElementById("result").innerHTML = `
+<h3 style="white-space:pre-line;">${r.desc}</h3>
+<img src="${r.img}">`;
+}
+  
 
     loadQuestion();
   </script>
-
 </body>
 </html>
