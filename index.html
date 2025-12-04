@@ -21,21 +21,24 @@
     }
 
     /* UPDATED BUTTON CSS (fix text wrapping) */
-    button {
-      margin-top: 10px;
-      padding: 14px 18px;       /* more breathing room */
-      font-size: 15px;
-      cursor: pointer;
-      border: none;
-      border-radius: 12px;
-      background: #fdc3cf;
-      color: white;
-      display: block;
-      width: 100%;
-      white-space: normal;      /* WRAPS LONG QUOTES */
-      line-height: 1.4;         /* improves readability */
-      text-align: center;       /* centered text */
-    }
+button {
+  margin-top: 10px;
+  padding: 16px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  background: #fdc3cf;
+  color: white;
+  display: block;
+  width: 100%;
+  white-space: normal;         /* allow wrapping */
+  overflow-wrap: break-word;   /* FORCE long lines to wrap */
+  word-break: normal;          /* prevent cutting words */
+  line-height: 1.5;
+  text-align: center;
+}
+
 
     button:hover { background: #fc94a9; }
     button.selected {
